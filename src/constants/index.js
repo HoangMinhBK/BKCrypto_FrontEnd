@@ -11,7 +11,7 @@ export const SCREEN_SIZE = {
   TABLET: "(max-width: 1000px)",
 };
 
-export const FetchingStatus = {
+export const FS = {
   IDLE: "idle",
   FETCHING: "fetching",
   UPDATING: "updating",

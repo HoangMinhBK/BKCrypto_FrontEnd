@@ -1,12 +1,9 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { THEME_MODE } from "../../constants";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleThemeMode } from "src/redux/themeSlice";
-import { FormControl } from "@mui/material";
 
 export default function SwitchThemeButton({ style }) {
   const themeMode = useSelector((state) => state.themeSlice.themeMode);
@@ -57,7 +54,7 @@ export default function SwitchThemeButton({ style }) {
     },
     "& .MuiSwitch-track": {
       opacity: 1,
-      backgroundColor: themeMode === THEME_MODE.DARK ? "#8796A5" : "#aab4be",
+      backgroundColor: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#aab4be",
       borderRadius: 20,
     },
   }));

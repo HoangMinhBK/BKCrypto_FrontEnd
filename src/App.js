@@ -75,6 +75,7 @@ function App() {
             exact={route.exact}
           />
         ))}
+        <Redirect from="/" to="/welcome" />
       </Switch>
     </Provider>
   );

@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 export default function EnterAppButton() {
   const themeMode = useSelector((state) => state.themeSlice.themeMode);
   return (
-    <NavLink to={"/login"} style={{ textDecoration: "none" }}>
+    <NavLink to={"/home/identity"} style={{ textDecoration: "none" }}>
       <Button
         variant="contained"
         sx={{
