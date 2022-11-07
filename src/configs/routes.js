@@ -6,7 +6,13 @@ const routeConfig = [
     path: "/login",
     exact: true,
     component: React.lazy(() => import("../pages/Login")),
-    layout: LayoutOptions.MAIN,
+    layout: LayoutOptions.BLANK,
+  },
+  {
+    path: "/register",
+    exact: true,
+    component: React.lazy(() => import("../pages/Register")),
+    layout: LayoutOptions.BLANK,
   },
   {
     path: "/welcome",
@@ -21,15 +27,28 @@ const routeConfig = [
     layout: LayoutOptions.MAIN,
   },
   {
-    path: "/home/claims",
+    path: "/home/claims-monitor",
     exact: true,
-    component: React.lazy(() => import("../pages/HomePage/Claims")),
+    component: React.lazy(() => import("../pages/HomePage/ClaimsMonitor")),
     layout: LayoutOptions.MAIN,
   },
   {
-    path: "/home/verifications",
+    path: "/home/proofs",
     exact: true,
-    component: React.lazy(() => import("../pages/HomePage/Verifications")),
+    component: React.lazy(() => import("../pages/HomePage/Proofs")),
+    layout: LayoutOptions.MAIN,
+  },
+
+  {
+    path: "/home/proof-creation",
+    exact: true,
+    component: React.lazy(() => import("../pages/HomePage/ProofCreation")),
+    layout: LayoutOptions.MAIN,
+  },
+  {
+    path: "/home/proof-test",
+    exact: true,
+    component: React.lazy(() => import("../pages/HomePage/ProofTest")),
     layout: LayoutOptions.MAIN,
   },
 ];

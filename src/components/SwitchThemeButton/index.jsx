@@ -9,7 +9,7 @@ export default function SwitchThemeButton({ style }) {
   const themeMode = useSelector((state) => state.themeSlice.themeMode);
 
   const MaterialUISwitch = styled(Switch)(() => ({
-    width: 62,
+    width: 59,
     height: 34,
     paddingRight: 7,
     paddingLeft: 7,

@@ -4,6 +4,9 @@ export const THEME_MODE = {
 };
 export const LS = {
   THEME: "theme",
+  PUBLIC_KEY: "public key",
+  PRIVATE_KEY: "private key",
+  PASSWORD: "password",
 };
 
 export const SCREEN_SIZE = {

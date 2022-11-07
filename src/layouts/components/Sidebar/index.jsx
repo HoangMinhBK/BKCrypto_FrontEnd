@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 export default function Sidebar() {
   const themeMode = useSelector((state) => state.themeSlice.themeMode);
+  const role = useSelector((state) => state.accountSlice.role);
   return (
     <Fragment>
       <Drawer
@@ -29,9 +30,27 @@ export default function Sidebar() {
           width="100%"
           mt={2}
         >
-          <NavigationButton label="IDENTITY" link="/home/identity" />
-          <NavigationButton label="CLAIMS" link="/home/claims" />
-          <NavigationButton label="VERIFICATIONS" link="/home/verifications" />
+          {role === "user" && (
+            <NavigationButton label="MY IDENTITY" link="/home/identity" />
+          )}
+          {role === "admin" && (
+            <NavigationButton
+              label="CLAIMS MONITOR"
+              link="/home/claims-monitor"
+            />
+          )}
+          {role === "user" && (
+            <NavigationButton label="MY PROOFS" link="/home/proofs" />
+          )}
+          {role === "user" && (
+            <NavigationButton
+              label="CREATE PROOFS"
+              link="/home/proof-creation"
+            />
+          )}
+          {role === "user" && (
+            <NavigationButton label="TEST PROOFS" link="/home/proof-test" />
+          )}
         </Box>
       </Drawer>
     </Fragment>

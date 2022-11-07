@@ -1,23 +1,13 @@
-import { Button, Typography } from "@mui/material";
-import { useLocation, NavLink } from "react-router-dom";
-import { THEME_MODE } from "src/constants";
+import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
+import CustomTypography from "src/components/CustomTypography";
+import { THEME_MODE } from "src/constants";
 
 export default function NavigationButton({ label, link, id }) {
   const path = useLocation().pathname;
   const themeMode = useSelector((state) => state.themeSlice.themeMode);
   const active = link === path;
-  const textColor = () => {
-    if (active && themeMode === THEME_MODE.DARK) {
-      return "#000000";
-    } else if (active && themeMode === THEME_MODE.LIGHT) {
-      return "#D8D8D8";
-    } else if (!active && themeMode === THEME_MODE.LIGHT) {
-      return "#000000";
-    } else if (!active && themeMode === THEME_MODE.DARK) {
-      return "#D8D8D8";
-    }
-  };
 
   const buttonColor = () => {
     if (active && themeMode === THEME_MODE.DARK) {
@@ -51,13 +41,12 @@ export default function NavigationButton({ label, link, id }) {
           },
         }}
       >
-        <Typography
-          fontFamily="ubuntu"
+        <CustomTypography
+          buttonText={active ? "true" : undefined}
           fontWeight="bold"
-          sx={{ color: textColor() }}
         >
           {label}
-        </Typography>
+        </CustomTypography>
       </Button>
     </NavLink>
   );

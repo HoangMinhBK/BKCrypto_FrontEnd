@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
 
-export default function Verification() {
+export default function Proofs() {
   return <Box>Verification</Box>;
 }

@@ -1,29 +1,23 @@
-import { Box, Button, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { saveIdentityToRedux } from "src/redux/identitySlice";
 import { THEME_MODE } from "src/constants";
 import { SCREEN_SIZE } from "src/constants";
+import CustomTypography from "src/components/CustomTypography";
+import CustomButton from "src/components/CustomButton";
 
 export default function Identity() {
   const identity = useSelector((state) => state.identitySlice.identity);
   const themeMode = useSelector((state) => state.themeSlice.themeMode);
   const mobile = useMediaQuery(SCREEN_SIZE.MOBILE);
   const tablet = useMediaQuery(SCREEN_SIZE.TABLET);
-
   const dp = useDispatch();
 
   return (
     <Box>
-      <Typography
-        fontFamily="ubuntu"
-        variant="h4"
-        sx={{
-          color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-          mb: 3,
-        }}
-      >
+      <CustomTypography variant="h4" mb={3}>
         My Identity
-      </Typography>
+      </CustomTypography>
       <Box
         width={mobile ? "100%" : tablet ? "70%" : "50%"}
         sx={{
@@ -40,171 +34,54 @@ export default function Identity() {
         {identity !== undefined && (
           <>
             <Box display="flex" alignItems="baseline">
-              <Typography
-                fontFamily="ubuntu"
-                fontWeight="bold"
-                variant="h6"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
-                Name:
-              </Typography>
-              <Typography
-                variant="h6"
-                fontStyle="italic"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
+              <CustomTypography variant="h6" fontWeight="bold" mr={1}>
+                Name:{" "}
+              </CustomTypography>
+              <CustomTypography variant="h6" fontStyle="italic" mr={1}>
                 {identity?.name}
-              </Typography>
+              </CustomTypography>
             </Box>
             <Box display="flex" alignItems="baseline">
-              <Typography
-                fontFamily="ubuntu"
-                fontWeight="bold"
-                variant="h6"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
+              <CustomTypography variant="h6" fontWeight="bold" mr={1}>
                 Gender:{" "}
-              </Typography>
-              <Typography
-                fontStyle="italic"
-                variant="h6"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
+              </CustomTypography>
+              <CustomTypography variant="h6" fontStyle="italic" mr={1}>
                 {identity?.gender}
-              </Typography>
+              </CustomTypography>
             </Box>
             <Box display="flex" alignItems="baseline">
-              <Typography
-                fontFamily="ubuntu"
-                fontWeight="bold"
-                variant="h6"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
+              <CustomTypography variant="h6" fontWeight="bold" mr={1}>
                 Date Of Birth:{" "}
-              </Typography>
-              <Typography
-                fontStyle="italic"
-                variant="h6"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
+              </CustomTypography>
+              <CustomTypography variant="h6" fontStyle="italic" mr={1}>
                 {identity?.dateOfBirth}
-              </Typography>
+              </CustomTypography>
             </Box>
             <Box display="flex" alignItems="baseline">
-              <Typography
-                fontFamily="ubuntu"
-                fontWeight="bold"
-                variant="h6"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
+              <CustomTypography variant="h6" fontWeight="bold" mr={1}>
                 Birth Place:{" "}
-              </Typography>
-              <Typography
-                fontStyle="italic"
-                variant="h6"
-                sx={{
-                  color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#000000",
-                  mr: 1,
-                }}
-              >
+              </CustomTypography>
+              <CustomTypography variant="h6" fontStyle="italic" mr={1}>
                 {identity?.birthPlace}
-              </Typography>
+              </CustomTypography>
             </Box>
           </>
         )}
       </Box>
       {identity === undefined && (
-        <Button
-          variant="contained"
-          sx={{
-            mr: 3,
-            borderRadius: "5px 5px 5px 5px",
-            minHeight: "50px",
-            minWidth: "150px",
-
-            background: themeMode === THEME_MODE.DARK ? "#ffffff" : "#353535",
-            "&:hover": {
-              background: themeMode === THEME_MODE.DARK ? "#ffffff" : "#353535",
-            },
-          }}
-        >
-          <Typography
-            sx={{
-              color: themeMode === THEME_MODE.DARK ? "#353535" : "#D8D8D8",
-            }}
-          >
-            Create Identity
-          </Typography>
-        </Button>
+        <CustomButton minHeight="50px" minWidth="150px" mr={3}>
+          <CustomTypography buttonText>Create Identity</CustomTypography>
+        </CustomButton>
       )}
       {identity === undefined && (
-        <Button
-          variant="contained"
-          sx={{
-            mr: 3,
-            borderRadius: "5px 5px 5px 5px",
-            minHeight: "50px",
-            minWidth: "150px",
-
-            background: themeMode === THEME_MODE.DARK ? "#ffffff" : "#353535",
-            "&:hover": {
-              background: themeMode === THEME_MODE.DARK ? "#ffffff" : "#353535",
-            },
-          }}
-        >
-          <Typography
-            sx={{
-              color: themeMode === THEME_MODE.DARK ? "#353535" : "#D8D8D8",
-            }}
-          >
-            Import Identity
-          </Typography>
-        </Button>
+        <CustomButton minHeight="50px" minWidth="150px" mr={3}>
+          <CustomTypography buttonText>Import Identity</CustomTypography>
+        </CustomButton>
       )}
       {identity !== undefined && (
-        <Button
-          variant="contained"
-          sx={{
-            mr: 3,
-            borderRadius: "5px 5px 5px 5px",
-            minHeight: "50px",
-            minWidth: "150px",
-
-            background: themeMode === THEME_MODE.DARK ? "#ffffff" : "#353535",
-            "&:hover": {
-              background: themeMode === THEME_MODE.DARK ? "#ffffff" : "#353535",
-            },
-          }}
-        >
-          <Typography
-            sx={{
-              color: themeMode === THEME_MODE.DARK ? "#353535" : "#D8D8D8",
-            }}
-          >
-            Claim Identity
-          </Typography>
-        </Button>
+        <CustomButton minHeight="50px" minWidth="150px" mr={3}>
+          <CustomTypography buttonText>Claim Identity</CustomTypography>
+        </CustomButton>
       )}
       <Button
         onClick={() => {
