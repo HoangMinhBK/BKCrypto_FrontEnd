@@ -43,7 +43,6 @@ export default function MainLayout(props) {
         <Sidebar />
         <MainContentWrapper>
           <Box sx={{ flexGrow: 1 }}>{children}</Box>
-          {/* <Footer /> */}
         </MainContentWrapper>
       </Box>
     </Fragment>

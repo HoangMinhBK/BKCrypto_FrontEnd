@@ -86,7 +86,6 @@ export default function Identity() {
       <Button
         onClick={() => {
           dp(saveIdentityToRedux("minh", "Male", 2001, "Nam Dinh"));
-          console.log(identity);
         }}
       >
         CLICK ME

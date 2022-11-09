@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LS } from "src/constants";
+import store from "./store";
 
 const bip39 = require("bip39");
 const HDKey = require("hdkey");
@@ -17,22 +18,31 @@ export const toggleRole = () => (dispatch) => {
   dispatch(toggleRoleSuccess());
 };
 
+export const validateMnemonic12Phrases = (testMnemonic, mnemonic) => {
+  const identical = testMnemonic === mnemonic;
+  const result = bip39.validateMnemonic(testMnemonic) && identical;
+  if (result === true) {
+    localStorage.setItem(
+      LS.PUBLIC_KEY,
+      store.getState().accountSlice.publicKey
+    );
+    localStorage.setItem(
+      LS.PRIVATE_KEY,
+      store.getState().accountSlice.privateKey
+    );
+    localStorage.setItem(LS.PASSWORD, store.getState().accountSlice.password);
+  }
+  return result;
+};
 export const generatePairKeys = () => (dispatch) => {
   const mnemonic = bip39.generateMnemonic();
   const hdkey = HDKey.fromMasterSeed(Buffer.from(mnemonic, "hex"));
-  localStorage.setItem(LS.PUBLIC_KEY, hdkey.publicExtendedKey);
-  localStorage.setItem(LS.PRIVATE_KEY, hdkey.publicExtendedKey);
   dispatch(generateMnemonic12PhrasesSuccess({ mnemonic: mnemonic }));
-  dispatch(
-    generatePublicKeyAndPrivateKeySuccess({
-      publicKey: hdkey.publicExtendedKey,
-      privateKey: hdkey.privateExtendedKey,
-    })
-  );
+  dispatch(generatePublicKeySuccess({ publicKey: hdkey.publicExtendedKey }));
+  dispatch(generatePrivateKeySuccess({ privateKey: hdkey.privateExtendedKey }));
 };
 
 export const createNewPassword = (password) => (dispatch) => {
-  localStorage.setItem(LS.PASSWORD, password);
   dispatch(createNewPasswordSuccess({ password: password }));
 };
 
@@ -47,8 +57,10 @@ const accountSlice = createSlice({
     generateMnemonic12PhrasesSuccess: (state, action) => {
       state.mnemonic = action.payload.mnemonic;
     },
-    generatePublicKeyAndPrivateKeySuccess: (state, action) => {
-      state.publicKey = action.payload.publickey;
+    generatePublicKeySuccess: (state, action) => {
+      state.publicKey = action.payload.publicKey;
+    },
+    generatePrivateKeySuccess: (state, action) => {
       state.privateKey = action.payload.privateKey;
     },
     createNewPasswordSuccess: (state, action) => {
@@ -61,6 +73,7 @@ export default accountSlice.reducer;
 export const {
   toggleRoleSuccess,
   generateMnemonic12PhrasesSuccess,
-  generatePublicKeyAndPrivateKeySuccess,
+  generatePublicKeySuccess,
+  generatePrivateKeySuccess,
   createNewPasswordSuccess,
 } = accountSlice.actions;

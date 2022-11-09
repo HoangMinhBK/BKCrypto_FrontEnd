@@ -22,7 +22,6 @@ const identitySlice = createSlice({
   initialState: initialState,
   reducers: {
     saveIdentityToReduxSuccess: (state, action) => {
-      console.log("action called");
       const newIdentity = {
         name: action.payload.name,
         gender: action.payload.gender,

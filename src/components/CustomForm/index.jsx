@@ -15,7 +15,8 @@ export default function CustomForm({
   error,
   errorText,
   placeHolder,
-  handleForm,
+  onChange,
+  defaultValue,
   ...props
 }) {
   const themeMode = useSelector((state) => state.themeSlice.themeMode);
@@ -27,11 +28,12 @@ export default function CustomForm({
           <CustomTypography>{label}</CustomTypography>
         </label>
         <input
+          defaultValue={defaultValue ? defaultValue : undefined}
           type={type}
           id={id}
           name={name}
           placeholder={placeHolder}
-          onChange={() => handleForm((e) => document.getElementById(id).value)}
+          onChange={onChange}
           style={{
             color: themeMode === THEME_MODE.DARK ? "#D8D8D8" : "#353535",
             background: themeMode === THEME_MODE.LIGHT ? "white" : "#353535",
